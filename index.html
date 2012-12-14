@@ -1,0 +1,86 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>MapIt</title>
+  <meta name="description" content="MapIt">
+  <meta name="viewport" content="width=device-width">
+  
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.1.5.min.js"></script>
+  <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+  
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+  
+  <script src="src/app.js"></script>
+  <script src="js/date.js"></script>
+  
+  <script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC8-dz65G9VbCec8SDP-0-Du5G0AfRRd2c&sensor=false">
+  </script> 
+  
+  <style type="text/css">
+    html { height: 100% }
+    body { height: 100%; margin: 0; padding: 0 }
+    #map_canvas { height: 50%; width: 50% }
+  </style>
+
+</head>
+
+<body onload="initialize()">
+  
+  <div id="mapitapp">
+    <div class="title">
+      <h1>mapit - travel diary</h1>
+    </div>
+    <div class="content">
+    </div>
+  </div>
+  
+  <!-- Templates -->
+  
+  <script type="text/template" id="input-template">
+  <div id="user-info">
+    Signed in as <%= Parse.User.current().get("username") %> (<a href="#" class="log-out">Log out</a>)
+  </div>
+  <div class="input">
+    <form class="input-form">
+      <h2>Location Input</h2>
+      <div class="error" style="display:none"></div>
+      <input type="number" id="input-latitude" placeholder="latitude" />
+      <input type="number" id="input-longitude" placeholder="longitude" />
+      <input type="text" id="input-data" placeholder="Diary Text" />
+      <input type="text" id="input-date" placeholder="Date" />
+      <input type="text" id="input-time" placeholder="Time" />
+      <button>Input</button>
+    </form>
+  </div>
+  </script>
+  
+  <script type="text/template" id="login-template">
+  <div class="login">
+    <form class="login-form">
+      <h2>Log In</h2>
+      <div class="error" style="display:none"></div>
+      <input type="email" id="login-username" placeholder="Email" />
+      <input type="password" id="login-password" placeholder="Password" />
+      <button>Log In</button>
+    </form>
+
+    <form class="signup-form">
+      <h2>Sign Up</h2>
+      <div class="error" style="display:none"></div>
+      <input type="email" id="signup-username" placeholder="Email" />
+      <input type="password" id="signup-password" placeholder="Create a Password" />
+      <button>Sign Up</button>
+    </form>
+  </div>
+  </script>
+  
+  <p><div id="map_canvas" style="margin-left: auto; margin-right: auto;"></div></p>
+  
+</body>
+
+</html>
